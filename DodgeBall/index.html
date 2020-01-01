@@ -24,6 +24,12 @@
 
     let score, scoreValue, blueBall, redBalls, gameOver;
 
+    function getAngle(x1,y1,x2,y2) {
+        let delta_x = x1 - x2;
+        let delta_y = y1 - y2;
+        return Math.atan2(delta_y, delta_x);
+    }
+
     class RedBall {
         instance;
         direction;
@@ -31,28 +37,48 @@
         vx;
         vy;
         size;
+        inside;
 
-        constructor(_direction = Math.random() * 2 * Math.PI, _speed = 10, _size = 100) {
+        constructor(_speed = 10, _size = 100) {
             this.instance = new Sprite(
                 resources["assets/Red Ball.png"].texture
             );
 
             this.speed = _speed;
 
-            this.direction = _direction;
-            this.vx = Math.cos(this.direction) * this.speed;
-            this.vy = Math.sin(this.direction) * this.speed;
-
             this.instance.width = _size;
             this.instance.height = _size;
             this.size = _size;
 
-            this.instance.x = Math.random() * window.innerWidth - this.size;
-            this.instance.y = Math.random() * window.innerHeight - this.size;
-            while (Math.pow((Math.pow(this.center.x - blueBall.center.x, 2) + Math.pow(this.center.y - blueBall.center.y, 2)), 0.5) < (blueBall.size / 2 + this.size / 2)) {
-                this.instance.x = Math.random() * window.innerWidth - this.size;
-                this.instance.y = Math.random() * window.innerHeight - this.size;
+            // Spawning ball outside the screen
+            // Ball is always spawned near a randomly chosen screen wall
+            const startBorder = Math.floor(Math.random() * 4);
+            switch (startBorder) {
+                case 0:
+                    this.instance.y = -this.size;
+                    this.instance.x = Math.random() * (window.innerWidth - this.size);
+                    break;
+                case 1:
+                    this.instance.y = app.renderer.height;
+                    this.instance.x = Math.random() * (window.innerWidth - this.size);
+                    break;
+                case 2:
+                    this.instance.x = -this.size;
+                    this.instance.y = Math.random() * (window.innerHeight - this.size);
+                    break;
+                case 3:
+                    this.instance.x = app.renderer.width;
+                    this.instance.y = Math.random() * (window.innerHeight - this.size);
+                    break;
             }
+            this.inside = false;
+
+            // Calculating the angle between the ball center and the screen center
+            this.direction = getAngle(this.instance.x + this.size / 2, this.instance.y + this.size / 2, window.innerWidth / 2, window.innerHeight / 2);
+
+            // Setting individual speeds based upon the direction angle
+            this.vx = -Math.cos(this.direction) * this.speed;
+            this.vy = -Math.sin(this.direction) * this.speed;
             app.stage.addChild(this.instance);
         }
 
@@ -61,9 +87,14 @@
         }
 
         move(delta) {
-            let hitBorder = this.borderCollision(delta);
-            if (hitBorder !== 0) {
-                this.changeDirection(hitBorder);
+            // Ignoring collisions before the ball enters the screen
+            if (this.inside) {
+                let hitBorder = this.borderCollision(delta);
+                if (hitBorder !== 0) {
+                    this.changeDirection(hitBorder);
+                }
+            } else if (!this.borderCollision(delta)){
+                this.inside = true;
             }
             this.instance.x += this.vx + delta;
             this.instance.y += this.vy + delta;
@@ -77,13 +108,13 @@
             if (this.instance.x + this.vx + delta < 0) {
                 return 1;
             }
-            if (this.instance.x + this.instance.width + this.vx + delta > width) {
+            if (this.instance.x + this.size + this.vx + delta > width) {
                 return 2;
             }
             if (this.instance.y + this.vy + delta < 0) {
                 return 3;
             }
-            if (this.instance.y + this.instance.height + this.vy + delta > height) {
+            if (this.instance.y + this.size + this.vy + delta > height) {
                 return 4;
             }
             return 0;
