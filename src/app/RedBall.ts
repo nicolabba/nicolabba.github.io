@@ -40,10 +40,11 @@ export default class RedBall extends Ball {
         }
         this.isInside = false;
 
+
         // Calculating the angle between the ball center and the screen center
         this.direction = getAngle(
-            this.instance.x + this.size / 2, this.instance.y + this.size / 2,
-            app.renderer.width / 2, app.renderer.width / 2
+            this.position.x, this.position.y,
+            app.renderer.width / 2, app.renderer.height / 2
         );
 
         // Setting individual speeds based upon the direction angle
@@ -63,7 +64,7 @@ export default class RedBall extends Ball {
             if (hitBorder !== null) {
                 this.changeDirection(hitBorder);
             }
-        } else if (!this.borderCollision(delta)) {
+        } else if (this.borderCollision(delta) === null) {
             this.isInside = true;
         }
         this.instance.x += this._vx + delta;

@@ -51,8 +51,8 @@ function startGame(): void {
   });
   app.renderer.view.style.position = "absolute";
   app.renderer.view.style.display = "block";
-  app.loader.add("Blue Ball", "/assets/img/Blue Ball.png")
-            .add("Red Ball", "/assets/img/Red Ball.png");
+  app.loader.add("Blue Ball", "assets/img/Blue Ball.png")
+            .add("Red Ball", "assets/img/Red Ball.png");
   if (document.getElementsByClassName("pre-game-menu").length > 0) {
     document.getElementsByClassName("pre-game-menu")[0].remove();
   }
