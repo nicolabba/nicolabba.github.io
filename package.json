@@ -4,10 +4,6 @@
   "license": "MIT",
   "author": "",
   "description": "",
-  "engines": {
-    "node": "~8.11.0",
-    "npm": "~5.8.0"
-  },
   "main": "src/index.html",
   "scripts": {
     "npm-reset": "rm -rf node_modules && npm cache verify && npm i",
@@ -16,23 +12,22 @@
     "build": "webpack"
   },
   "dependencies": {
-    "pixi.js": "4.7.1"
+    "pixi.js": "^5.2.0"
   },
   "devDependencies": {
-    "@types/node": "9.6.0",
-    "@types/pixi.js": "4.7.2",
-    "awesome-typescript-loader": "5.0.0-1",
-    "clean-webpack-plugin": "0.1.19",
-    "copy-webpack-plugin": "4.5.1",
+    "@types/node": "13.1.2",
+    "awesome-typescript-loader": "5.2.1",
+    "clean-webpack-plugin": "3.0.0",
+    "copy-webpack-plugin": "5.1.1",
     "css-loader": "^3.4.0",
-    "file-loader": "1.1.11",
-    "html-webpack-plugin": "3.1.0",
+    "file-loader": "5.0.2",
+    "html-webpack-plugin": "3.2.0",
     "style-loader": "^1.1.2",
-    "tsconfig-paths-webpack-plugin": "3.0.2",
-    "tslint": "5.9.1",
-    "typescript": "2.7.2",
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "tslint": "5.20.1",
+    "typescript": "3.7.4",
     "webpack": "^4.41.5",
-    "webpack-cli": "2.0.13",
+    "webpack-cli": "3.3.10",
     "webpack-dev-server": "^3.10.1"
   }
 }
