@@ -16,7 +16,6 @@
         Text = PIXI.Text;
     loader
         .add("assets/Blue Ball.png")
-        .add("assets/trail.png")
         .add("assets/Red Ball.png");
 
     //Create a Pixi Application
@@ -56,19 +55,19 @@
             switch (startBorder) {
                 case 0:
                     this.instance.y = -this.size;
-                    this.instance.x = Math.random() * (window.innerWidth - this.size);
+                    this.instance.x = Math.random() * window.innerWidth - this.size;
                     break;
                 case 1:
                     this.instance.y = app.renderer.height;
-                    this.instance.x = Math.random() * (window.innerWidth - this.size);
+                    this.instance.x = Math.random() * window.innerWidth - this.size;
                     break;
                 case 2:
                     this.instance.x = -this.size;
-                    this.instance.y = Math.random() * (window.innerHeight - this.size);
+                    this.instance.y = Math.random() * window.innerHeight - this.size;
                     break;
                 case 3:
                     this.instance.x = app.renderer.width;
-                    this.instance.y = Math.random() * (window.innerHeight - this.size);
+                    this.instance.y = Math.random() * window.innerHeight - this.size;
                     break;
             }
             this.inside = false;
