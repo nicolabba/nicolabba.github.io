@@ -7,7 +7,7 @@ class TypedText extends React.Component<Props> {
     width = this.props.text.length
 
     onAnimationEnd(event: AnimationEvent) {
-        if (event.animationName == styles.typing && !!this.props.onFinishedWriting) {
+        if (event.animationName === styles.typing && !!this.props.onFinishedWriting) {
             this.props.onFinishedWriting()
         }
     }
