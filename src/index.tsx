@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {Routes, Route, HashRouter} from "react-router-dom";
-import Main from "./pages/main/main";
+// import Main from "./pages/main/main";
 import Sudoku from "./pages/sudoku/sudoku";
 
 
