@@ -12,7 +12,7 @@ ReactDOM.render(
       <HashRouter>
           <Routes>
               <Route path="/">
-                  <Route index element={<Main />} />
+                  <Route index element={<Sudoku />} />
                   <Route path="sudoku" element={<Sudoku />} />
               </Route>
           </Routes>
