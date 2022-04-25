@@ -14,8 +14,6 @@ ReactDOM.render(
               <Route path="/">
                   <Route index element={<Main />} />
                   <Route path="sudoku" element={<Sudoku />} />
-                  {/*<Route path="contact" element={<Contact />} />*/}
-                  {/*<Route path="*" element={<NoPage />} />*/}
               </Route>
           </Routes>
       </HashRouter>
