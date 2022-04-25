@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./pages/main/main";
+import Sudoku from "./pages/sudoku/sudoku";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+          <Routes>
+              <Route path="/">
+                  <Route index element={<Main />} />
+                  <Route path="sudoku" element={<Sudoku />} />
+                  {/*<Route path="contact" element={<Contact />} />*/}
+                  {/*<Route path="*" element={<NoPage />} />*/}
+              </Route>
+          </Routes>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,32 @@
+.sudoku {
+    display: grid;
+    border: solid 1px black;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.main-container {
+    height: 700px;
+    width: 700px;
+    border-width: 2px;
+    margin: 10px
+}
+
+.sudoku-option {
+    display: flex;
+    background-color: gray;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.sudoku-option:only-child {
+    grid-column: span 3;
+    grid-row: span 3;
+    cursor: unset;
+}
+
+.button {
+    margin-top: 10px;
+    margin-left: 10px;
+}

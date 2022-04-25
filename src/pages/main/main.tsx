@@ -1,15 +1,14 @@
-import './components/TypedText/TypedText'
-import './App.css';
-import TypedText from './components/TypedText/TypedText'
+import './main.css';
+import TypedText from '../../components/TypedText/TypedText'
 import { Input, ThemeProvider } from '@react95/core';
-import Modal from './components/Modal'
+import Modal from '../../components/Modal'
 import React, { CSSProperties } from 'react';
 import { ModalProps } from '@react95/core/@types/Modal/Modal';
 
 type TextData = {text: String, onFinishedWriting?: () => void, style?: CSSProperties}
 type ModalData = {shown: boolean, content: JSX.Element} & ModalProps
 
-class App extends React.Component<any, {shownTexts: TextData[], modalData: ModalData, nextText: number, nextModal: number}> {
+class Main extends React.Component<any, {shownTexts: TextData[], modalData: ModalData, nextText: number, nextModal: number}> {
 
   constructor(props: any) {
     super(props)
@@ -68,7 +67,7 @@ class App extends React.Component<any, {shownTexts: TextData[], modalData: Modal
   render() {
     const nextText = this.state.nextText
     return (
-      <div className="App">
+      <div className="main">
         {this.state.shownTexts.map((element, index) => {
           return <TypedText
             numberKey={index + 1}
@@ -95,4 +94,4 @@ class App extends React.Component<any, {shownTexts: TextData[], modalData: Modal
   }
 }
 
-export default App;
+export default Main;
