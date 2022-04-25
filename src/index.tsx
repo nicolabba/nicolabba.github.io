@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Routes, Route, HashRouter} from "react-router-dom";
 import Main from "./pages/main/main";
 import Sudoku from "./pages/sudoku/sudoku";
 
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
+      <HashRouter>
           <Routes>
               <Route path="/">
                   <Route index element={<Main />} />
@@ -18,7 +18,7 @@ ReactDOM.render(
                   {/*<Route path="*" element={<NoPage />} />*/}
               </Route>
           </Routes>
-      </BrowserRouter>
+      </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
